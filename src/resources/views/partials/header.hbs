@@ -15,28 +15,18 @@
                     <a class="active" href="#">Welcome <b>{{user.name}}</b>!</a>
                     <div class="subnav-dropdown">
                       <br>
-                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-address-card"></i> My Account</a>
-                      <hr>
-                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i> My purchase</a>
+                      {{!-- <a class="subnav-dropdown-items" href="#"><i class="fa fa-address-card"></i> My Account</a>
+                      <hr> --}}
+                      <a class="subnav-dropdown-items" href="/cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
                       <hr>
                       {{#ifeq user.role 'Admin'}}
-                        <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i> Management</a>
+                        <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i> Quản Lý</a>
                         <hr>
                       {{/ifeq}}
-                      <a class="subnav-dropdown-items" onclick="logout()"><i class='fas fa-sign-out-alt'></i> Log out</a>
+                      <a class="subnav-dropdown-items" onclick="logout()"><i class='fas fa-sign-out-alt'></i> Đăng xuất</a>
                       <br><br>
                     </div>
                 </li>
-                {{!-- <li>
-                  <a href="#"><i class="fa fa-globe"></i> Change languages <i class="fa fa-chevron-down"></i></a>
-                    <div class="subnav-dropdown subnav-lang-dropdown">
-                      <br>
-                      <a class="subnav-dropdown-items" href="#">Tiếng Việt</a>
-                      <hr>
-                      <a class="subnav-dropdown-items" href="#">English</a>
-                      <br><br>
-                    </div>
-                </li> --}}
             {{else}}
                 <li>
                   <a href="/cart">
@@ -45,10 +35,10 @@
                   </a>
                 </li>
                 <li>
-                    <a class="active" href="/login">Login</a>
+                    <a class="active" href="/login">Đăng nhập</a>
                 </li>
                 <li>
-                    <a href="/register">Register</a>
+                    <a href="/register">Đăng kí</a>
                 </li>
                 {{!-- <li>
                   <a href="#"><i class="fa fa-globe"></i> Change languages <i class="fa fa-chevron-down"></i></a>
@@ -72,7 +62,7 @@
   <div class="row">
     <div class="col-lg-11 col-md-9 col-sm-6 col-9">
       <a href="/" class="logo-icon-header">
-        <div id="logo-header">Phong<span>Store</span></div>
+        <div id="logo-header">Bard<span>Pod</span></div>
       </a>
     </div>
 
@@ -89,10 +79,10 @@
       {{!-- <a href="/product"><li>Products</li></a>
       <a href="/product/manage"><li>Manage</li></a>
       <a href="/admin"><li>Admin</li></a> --}}
-      <a href="/shoe"><li>Shoes</li></a>
-      <a href="/cart"><li>Cart</li>
+      <a href="/pod"><li>Sản phẩm</li></a>
+      <a href="/cart"><li>Giỏ hàng</li>
       </a>
-      <a href="javascript:;" class="btn-info-scroll"><li>About Store</li></a>
+      <a href="javascript:;" class="btn-info-scroll"><li>Về Bard</li></a>
     </ul>
   </nav>
 </header>

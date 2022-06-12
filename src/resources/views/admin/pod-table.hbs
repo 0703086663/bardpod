@@ -1,0 +1,422 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Quản lý Pod</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                <li class="breadcrumb-item active">{{title}} Bảng</li>
+            </ol>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Quản lý Pod
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#create-pod"><i class="fa fa-plus"></i> Tạo Pod</button>
+                    <a href="#deleted-pod-table">
+                        <button class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Pods đã xóa</button>
+                    </a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Hãng</th>
+                                    <th>Loại</th>
+                                    <th>Pod Name</th>
+                                    <th>Color</th>
+                                    <th>Price</th>
+                                    {{!-- <th>Size</th> --}}
+                                    {{!-- <th>Quantity</th> --}}
+                                    <th>Available</th>
+                                    <th>Bestseller</th>
+                                    <th>Số hơi</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Ngày sửa</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each podList}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
+                                    <td id="{{this._id}}-brand-name">{{this.brand.name}}</td>
+                                    <td id="{{this._id}}-type-name">{{this.type.name}}</td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td>{{this.color}}</td>
+                                    <td id="{{this._id}}-price">{{this.price}}</td>
+                                    {{!-- <td>
+                                        {{#size}}
+                                            <span class="btn-dark mt-1">{{this.number}}</span>
+                                        {{/size}}
+                                    </td> --}}
+                                    {{!-- <td id="{{this._id}}-quantity">{{this.quantity}}</td> --}}
+                                    <td id="{{this._id}}-available">{{this.available}}</td>
+                                    <td id="{{this._id}}-bestseller">{{this.bestseller}}</td>
+                                    <td id="{{this._id}}-buff">{{this.buff}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td id="{{this._id}}-updatedAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" class="open-modal-edit-pod" data-toggle="modal" data-target="#edit-pod" data-id="{{this._id}}">
+                                            <button class="btn btn-dark">Sửa</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#delete-pod" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Deleted Pod Pod Table --}}
+
+            {{!-- End deleted table --}}
+        </div>
+
+
+        {{!-- Start Deleted Pod Pod Table --}}
+        <div class="container-fluid px-4" id="deleted-pod-table">
+            <h1 class="mt-4">Pod đã xóa</h1>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Bảng
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Hãng</th>
+                                    <th>Loại</th>
+                                    <th>Pod Name</th>
+                                    <th>Ngày xóa</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each podDeleted}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
+                                    <td>{{this.brand.name}}</td>
+                                    <td>{{this.type.name}}</td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.deletedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#restore-pod" data-id="{{this._id}}">
+                                            <button class="btn btn-info">Khôi phục</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#force-delete-pod" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Xóa vĩnh viễn</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{else}}
+                                <tr>
+                                    <td colspan="13" class="text-center">
+                                        Không có pod nào đã xóa.
+                                        <a href="#layoutSidenav_content">Pod đã tạo</a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- End deleted table --}}
+    </main>
+</div>
+
+    {{!-- Forms hidden --}}
+    <form name="delete-pod-form" method="post"></form>
+    <form name="permantly-delete-pod-form" method="post"></form>
+    <form name="restore-pod-form" method="post"></form>
+
+    {{!-- Confirm delete code --}}
+    <div class="modal fade" id="delete-pod" tabindex="-1" role="dialog" aria-labelledby="delete-podLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-podLabel"><b>Xóa Pod</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Bạn có chắc chắn là muốn xóa Pod này?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-delete-pod" type="button" class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Create new pod modal --}}
+    <div class="modal fade" id="create-pod" tabindex="-1" role="dialog" aria-labelledby="createPodtypeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPodtypeLabel">Tạo pod mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form action="/pod/store" method="POST" enctype="multipart/form-data" id="create-pod-form">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pod-brand" class="col-form-label">Hãng:</label>
+                            <select name="brand" id="brand-select" class="form-control" required>
+                                {{#each brandList}}
+                                    <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-type" class="col-form-label">Loại:</label>
+                            <select name="type" id="type-select" class="form-control" required>
+                                {{#each podtypeList}}
+                                    <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-name" class="col-form-label">Tên pod:</label>
+                            <input type="text" class="form-control" id="pod-name" name="name" maxLength="20" placeholder="Ví dụ: Rodeo đào" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-buff" class="col-form-label">Số hơi:</label>
+                            <select name="buff" id="edit-pod-available" class="form-control">
+                                <option value="1000" class="edit-buff-options">1000 hơi</option>
+                                <option value="1100" class="edit-buff-options">1100 hơi</option>
+                                <option value="1200" class="edit-buff-options">1200 hơi</option>
+                                <option value="1300" class="edit-buff-options">1300 hơi</option>
+                                <option value="1400" class="edit-buff-options">1400 hơi</option>
+                                <option value="1500" class="edit-buff-options">1500 hơi</option>
+                                <option value="1600" class="edit-buff-options">1600 hơi</option>
+                                <option value="1700" class="edit-buff-options">1700 hơi</option>
+                                <option value="1800" class="edit-buff-options">1800 hơi</option>
+                                <option value="1900" class="edit-buff-options">1900 hơi</option>
+                                <option value="2000" class="edit-buff-options">2000 hơi</option>
+                                <option value="3000" class="edit-buff-options">3000 hơi</option>
+                                <option value="4000" class="edit-buff-options">4000 hơi</option>
+                                <option value="5000" class="edit-buff-options">5000 hơi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-color" class="col-form-label">Color:</label>
+                            {{!-- <input type="text" class="form-control" id="pod-color" name="color"> --}}
+                            <select name="color" id="pod-color" class="form-control" required>
+                                <option value="White">White</option>
+                                <option value="Black">Black</option>
+                                <option value="Red">Red</option>
+                                <option value="Green">Green</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Yellow">Yellow</option>
+                                <option value="Orange">Orange</option>
+                                <option value="Grey">Grey</option>
+                                <option value="Purple">Purple</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-price" class="col-form-label">Price:</label>
+                            <input type="text" class="form-control" id="pod-price" name="price" placeholder="Ví dụ: 200000"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
+                        </div>
+                        {{!-- <div class="form-group">
+                            <div id="size-fields" class="p-1">
+                                <div><label for="param-size-number">Size</label></div>
+                                <div valign="top" class="input-group col-xs-3">
+                                        <input type="text" class="form-control" id="param-size-number" name="size[0][number]" placeholder="Size number" 
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"/>
+
+                                        <input type="text" class="form-control input-stock-size" id="param-size-stock" 
+                                        name="size[0][stock]" placeholder="Stock" 
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+                                        onkeyup="getTotalStockOfSize()"/>
+                                    
+                                    <a href="javascript:void(0);" class="add-size-btn btn btn-success" ><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{!-- <div class="form-group" id="size-input"> --}}
+                        <div class="form-group">
+                            <input type="file" class="form-control p-1" name="image"
+                                accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])" required>
+                            <div class="text-center">
+                                <img class="mt-2" id="preview-image" alt="x" width="50%" height="50%" src="../images/example-pod.png"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-info">Tạo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Edit pod modal --}}
+    <div class="modal fade" id="edit-pod" tabindex="-1" role="dialog" aria-labelledby="editPodtypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPodLabel">Sửa Pod</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form id="edit-pod-form" method="POST">
+                    <div class="modal-body">
+                        <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pod-brand" class="col-form-label">Hãng:</label>
+                            <select name="brand" id="edit-pod-brand" class="form-control">
+                                {{#each brandList}}
+                                    <option value="{{this._id}}" class="edit-brand-options">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-type" class="col-form-label">Loại:</label>
+                            <select name="type" id="edit-type-brand" class="form-control">
+                                {{#each podtypeList}}
+                                    <option value="{{this._id}}" class="edit-type-options">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="edit-pod-name" name="name" maxLength="19">
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-color" class="col-form-label">Color</label>
+                            {{!-- <input type="text" class="form-control" id="edit-pod-color" name="color"> --}}
+                            <select id="edit-pod-color" class="form-control" name="color">
+                                <option class="edit-color-options" value="White">White</option>
+                                <option class="edit-color-options" value="Black">Black</option>
+                                <option class="edit-color-options" value="Red">Red</option>
+                                <option class="edit-color-options" value="Green">Green</option>
+                                <option class="edit-color-options" value="Blue">Blue</option>
+                                <option class="edit-color-options" value="Yellow">Yellow</option>
+                                <option class="edit-color-options" value="Orange">Orange</option>
+                                <option class="edit-color-options" value="Grey">Grey</option>
+                                <option class="edit-color-options" value="Purple">Purple</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-price" class="col-form-label">Price:</label>
+                            <input type="text" class="form-control" id="edit-pod-price" name="price" 
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                        </div>
+                        <div class="form-group">
+                            <label for="pod-buff" class="col-form-label">Số hơi:</label>
+                            <select name="buff" id="edit-pod-available" class="form-control">
+                                <option value="1000" class="edit-buff-options">1000 hơi</option>
+                                <option value="1100" class="edit-buff-options">1100 hơi</option>
+                                <option value="1200" class="edit-buff-options">1200 hơi</option>
+                                <option value="1300" class="edit-buff-options">1300 hơi</option>
+                                <option value="1400" class="edit-buff-options">1400 hơi</option>
+                                <option value="1500" class="edit-buff-options">1500 hơi</option>
+                                <option value="1600" class="edit-buff-options">1600 hơi</option>
+                                <option value="1700" class="edit-buff-options">1700 hơi</option>
+                                <option value="1800" class="edit-buff-options">1800 hơi</option>
+                                <option value="1900" class="edit-buff-options">1900 hơi</option>
+                                <option value="2000" class="edit-buff-options">2000 hơi</option>
+                                <option value="3000" class="edit-buff-options">3000 hơi</option>
+                                <option value="4000" class="edit-buff-options">4000 hơi</option>
+                                <option value="5000" class="edit-buff-options">5000 hơi</option>
+                            </select>
+                        </div>
+                        {{!-- <div class="form-group mb-0" id="size-input">
+                            <label for="pod-quantity" class="col-form-label">Total amount Of Pods: <b id="total"></b></label>
+                        </div> --}}
+                        <div class="form-group">
+                            <div class="row p-3">
+                                <div class="col-5 p-0">
+                                    <label for="available" class="col-form-label">Is Available:</label>
+                                    <select name="available" id="edit-pod-available" class="form-control">
+                                        <option value="true" class="edit-available-options">Available</option>
+                                        <option value="false" class="edit-available-options">Out of stock</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-2"></div>
+
+                                <div class="col-5 p-0">
+                                    <label for="bestseller" class="col-form-label">Is bestseller:</label>
+                                    <select name="bestseller" id="edit-pod-bestseller" class="form-control">
+                                        <option value="true" class="edit-bestseller-options">Best seller</option>
+                                        <option value="false" class="edit-bestseller-options">Not best seller</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="text-center">
+                                <img class="mt-2" id="preview-image-edit" alt="x" width="50%" height="50%" src="../images/example-pod.png"/>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-info" id="btn-edit-pod">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Confirm permantly delete code --}}
+    <div class="modal fade" id="force-delete-pod" tabindex="-1" role="dialog" aria-labelledby="delete-podLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-podLabel"><b>Xóa vĩnh viễn</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Bạn có chắc chắn là muốn <strong>xóa vĩnh viễn</strong> pod này?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-force-delete-pod" type="button" class="btn btn-danger">Chắc chắn</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       {{!-- Confirm restore code --}}
+    <div class="modal fade" id="restore-pod" tabindex="-1" role="dialog" aria-labelledby="restore-podLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-restore">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="restore-podLabel"><b>Khôi phục</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Bạn có chắc chắn là muốn <strong>Khôi phục</strong>  pod này?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-restore-pod" type="button" class="btn btn-danger">Khỏi phục</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

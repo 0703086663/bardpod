@@ -1,0 +1,235 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Bảng phân loại</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Phân loại</li>
+            </ol>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Danh sách phân loại
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#create-podtype"><i class="fa fa-plus"></i> Tạo loại mới</button>
+                    <a href="#deleted-podtype-table">
+                        <button class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Các loại đã xóa</button>
+                    </a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Type Name</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Ngày sửa</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each podtypeList}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" class="open-modal-edit-podtype" data-toggle="modal" data-target="#edit-podtype" data-id="{{this._id}}">
+                                            <button class="btn btn-dark">Sửa</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#delete-podtype" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Deleted Pod Type Table --}}
+
+            {{!-- End deleted table --}}
+        </div>
+
+
+        {{!-- Start Deleted Pod Type Table --}}
+        <div class="container-fluid px-4" id="deleted-podtype-table">
+            <h1 class="mt-4">Các loại đã xóa</h1>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Danh sách
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên loại</th>
+                                    <th>Ngày xóa</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each podtypeDeleted}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.deletedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#restore-podtype" data-id="{{this._id}}">
+                                            <button class="btn btn-info">Khôi phục</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#force-delete-podtype" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Xóa vĩnh viễn</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- End deleted table --}}
+    </main>
+</div>
+
+    {{!-- Forms hidden --}}
+    <form name="delete-podtype-form" method="post"></form>
+    <form name="permantly-delete-podtype-form" method="post"></form>
+    <form name="restore-podtype-form" method="post"></form>
+
+    {{!-- Confirm delete code --}}
+    <div class="modal fade" id="delete-podtype" tabindex="-1" role="dialog" aria-labelledby="delete-podtypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-podtypeLabel"><b>Xóa loại</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Bạn có chắc chắn muốn xóa loại này?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-delete-podtype" type="button" class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Create new podtype modal --}}
+    <div class="modal fade" id="create-podtype" tabindex="-1" role="dialog" aria-labelledby="createPodtypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPodtypeLabel">Tạo loại mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form action="/podtype/store" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="podtype-name" class="col-form-label">Type name:</label>
+                            <input type="text" class="form-control" id="podtype-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control p-1" id="" name="image"
+                                accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
+                            <div class="text-center">
+                                <img id="preview-image" alt="x" width="50%" height="50%" src="../images/example-pod.png"/ required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-info">Tạo mới</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Edit podtype modal --}}
+    <div class="modal fade" id="edit-podtype" tabindex="-1" role="dialog" aria-labelledby="editPodtypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPodtypeLabel">Sửa thông tin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form id="edit-podtype-form" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="edit-podtype-name" class="col-form-label">Type name</label>
+                            <input type="text" class="form-control" id="edit-podtype-name" name="name">
+                        </div>
+                        {{!-- <div class="form-group">
+                            <label for="edit-podtype-image" class="col-form-label">Example Hình ảnh</label>
+                            <input type="text" class="form-control" id="edit-podtype-image" name="image" required>
+                        </div> --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-info" id="btn-edit-podtype">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Confirm permantly delete code --}}
+    <div class="modal fade" id="force-delete-podtype" tabindex="-1" role="dialog" aria-labelledby="delete-podtypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-podtypeLabel"><b>Xóa vĩnh viễn</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Bạn có chắc chắn muốn <strong>Xóa vĩnh viễn</strong> loại này không?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-force-delete-podtype" type="button" class="btn btn-danger">Chắc chắn</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       {{!-- Confirm restore code --}}
+    <div class="modal fade" id="restore-podtype" tabindex="-1" role="dialog" aria-labelledby="restore-podtypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-restore">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="restore-podtypeLabel"><b>Khôi phục</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Bạn có chắc chắn muốn <strong>Khôi phục</strong>  loại này?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-restore-podtype" type="button" class="btn btn-danger">Khôi phục</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

@@ -2,9 +2,8 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const Brand = require('../models/Brand')
-const Shoetype = require('../models/Shoetype')
-const Shoe = require('../models/Shoe')
-const Product = require('../models/Product')
+const Podtype = require('../models/Podtype')
+const Pod = require('../models/Pod')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
 
@@ -143,21 +142,21 @@ class AdminController {
     }
 
 
-    // [GET] /admin/shoetype-table
-    shoetypeTable(req,res,next){      
+    // [GET] /admin/podtype-table
+    podtypeTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([Shoetype.find(), Shoetype.findDeleted(), User.findOne({_id:decodeToken})])
-        .then(([shoetypeList, shoetypeDeleted, data]) => {
+        Promise.all([Podtype.find(), Podtype.findDeleted(), User.findOne({_id:decodeToken})])
+        .then(([podtypeList, podtypeDeleted, data]) => {
             if (data) {
                 req.data = data
-                return res.render('admin/shoetype-table',
+                return res.render('admin/podtype-table',
                     {
                         user: mongooseToObject(data),
-                        shoetypeList: multipleMongooseToObject(shoetypeList),
-                        shoetypeDeleted: multipleMongooseToObject(shoetypeDeleted),
+                        podtypeList: multipleMongooseToObject(podtypeList),
+                        podtypeDeleted: multipleMongooseToObject(podtypeDeleted),
                         layout: 'adminLayout',
-                        title: 'Shoe Type',
+                        title: 'Pod Type',
                         deletedTitle: 'Deleted Types'
                     })
             }
@@ -168,36 +167,36 @@ class AdminController {
         })
     }
 
-    // [GET] /admin/shoe-table
-    shoeTable(req,res,next){      
+    // [GET] /admin/pod-table
+    podTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
         Promise.all([
             User.findOne({_id:decodeToken}),
-            Shoe.find().populate('brand').populate('type'), 
-            Shoe.findDeleted().populate('brand').populate('type'), 
+            Pod.find().populate('brand').populate('type'), 
+            Pod.findDeleted().populate('brand').populate('type'), 
             Brand.find({}),
-            Shoetype.find({})
+            Podtype.find({})
         ])
         .then(([
             data,
-            shoeList, 
-            shoeDeleted, 
+            podList, 
+            podDeleted, 
             brandList,
-            shoetypeList
+            podtypeList
         ]) => {
             if (data) {
                 req.data = data
-                return res.render('admin/shoe-table',
+                return res.render('admin/pod-table',
                     {
                         user: mongooseToObject(data),
-                        shoeList: multipleMongooseToObject(shoeList),
-                        shoeDeleted: multipleMongooseToObject(shoeDeleted),
+                        podList: multipleMongooseToObject(podList),
+                        podDeleted: multipleMongooseToObject(podDeleted),
                         brandList: multipleMongooseToObject(brandList),
-                        shoetypeList: multipleMongooseToObject(shoetypeList),
+                        podtypeList: multipleMongooseToObject(podtypeList),
                         layout: 'adminLayout',
-                        title: 'Shoe',
-                        deletedTitle: 'Deleted Shoe'
+                        title: 'Pod',
+                        deletedTitle: 'Deleted Pod'
                     })
             }
         })

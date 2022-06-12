@@ -3,7 +3,7 @@ const Brand = require('../models/Brand');
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
 
-class ProductController {
+class BrandController {
  
     //[POST] /brand/handle-form-actions
     handleFormActions(req,res,next) {
@@ -76,7 +76,7 @@ class ProductController {
 
 }
 
-module.exports = new ProductController;
+module.exports = new BrandController;
 
 const res = require('express/lib/response');
-const productController = require('./ProductController');
+const brandController = require('./BrandController');

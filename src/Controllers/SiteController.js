@@ -1,9 +1,8 @@
  
 const User = require('../models/User')
 const Brand = require('../models/Brand')
-const Shoetype = require('../models/Shoetype')
-const Shoe = require('../models/Shoe')
-const Product = require('../models/Product')
+const Podtype = require('../models/Podtype')
+const Pod = require('../models/Pod')
 const Cart = require('../models/Cart')
 const Order = require('../models/Order')
 
@@ -26,13 +25,13 @@ class SiteController {
             Promise.all([
                 User.findOne({_id: decodeToken}),
                 Brand.find({}),
-                Shoetype.find({}),
-                Shoe.find({bestseller: true})
+                Podtype.find({}),
+                Pod.find({bestseller: true})
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1})
                     .limit(3),
-                Shoe.find({available: true})
+                Pod.find({available: true})
                 .populate('brand')
                 .populate('type')
                 .sort({createdAt: 1})
@@ -41,9 +40,9 @@ class SiteController {
             .then(([
                 data,
                 brandList,
-                shoeType,
-                shoeBestseller,
-                shoeAvailable
+                podType,
+                podBestseller,
+                podAvailable
             ]) => {
                 if (data) {
                     req.data = data
@@ -51,9 +50,9 @@ class SiteController {
                         {
                             user: mongooseToObject(data),
                             brandList: multipleMongooseToObject(brandList),
-                            shoeType: multipleMongooseToObject(shoeType),
-                            shoeBestseller: multipleMongooseToObject(shoeBestseller),
-                            shoeAvailable: multipleMongooseToObject(shoeAvailable),
+                            podType: multipleMongooseToObject(podType),
+                            podBestseller: multipleMongooseToObject(podBestseller),
+                            podAvailable: multipleMongooseToObject(podAvailable),
                             title: 'Home page'
                         })
                     next()
@@ -63,13 +62,13 @@ class SiteController {
         else {
             Promise.all([
                 Brand.find({}),
-                Shoetype.find({}),
-                Shoe.find({bestseller: true})
+                Podtype.find({}),
+                Pod.find({bestseller: true})
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1})
                     .limit(3),
-                Shoe.find({available: true})
+                Pod.find({available: true})
                 .populate('brand')
                 .populate('type')
                 .sort({createdAt: 1})
@@ -78,13 +77,13 @@ class SiteController {
             ])
             .then(([
                 brandList,
-                shoeType,
-                shoeBestseller,
-                shoeAvailable
+                podType,
+                podBestseller,
+                podAvailable
             ]) => {
                 res.render('index', {
-                    shoeBestseller: multipleMongooseToObject(shoeBestseller),
-                    shoeAvailable: multipleMongooseToObject(shoeAvailable),
+                    podBestseller: multipleMongooseToObject(podBestseller),
+                    podAvailable: multipleMongooseToObject(podAvailable),
                     title: 'Home page'
                 })
             }
@@ -345,7 +344,7 @@ class SiteController {
                 var cart = new Cart(req.session.cart)
                 return res.render('cart',
                     {
-                        shoe: cart.generateArrays(),
+                        pod: cart.generateArrays(),
                         totalPrice: cart.totalPrice,
                         title: 'Cart',
                     })
@@ -357,13 +356,13 @@ class SiteController {
             if(req.session.cart){
                 Promise.all([
                     User.findOne({_id: decodeToken}),
-                    Shoe.find({})
+                    Pod.find({})
                         .populate('brand')
                         .populate('type')
                 ])
                 .then(([
                     data,
-                    shoe,
+                    pod,
                 ]) => {
                     if (data) {
                         req.data = data
@@ -371,7 +370,7 @@ class SiteController {
                         return res.render('cart',
                             {
                                 user: mongooseToObject(data),
-                                shoe: cart.generateArrays(),
+                                pod: cart.generateArrays(),
                                 totalPrice: cart.totalPrice,
                                 title: 'Cart',
                             })
@@ -381,8 +380,9 @@ class SiteController {
             }
             else{
                 User.findOne({_id: decodeToken})
-                .then(() => res.render('cart',{
-                    title: 'Cart'
+                .then((user) => res.render('cart',{
+                    title: 'Cart',
+                    user: mongooseToObject(user)
                 }))
             }
         }
@@ -400,7 +400,10 @@ class SiteController {
         order.save()
         req.session.cart = null;
 
-        res.redirect('/')
+        res.render('index',{
+            title: 'Home',
+            msg: 'Đặt hàng thành công! Bạn có thể gọi vào các số hotline 0703086663 hoặc 0865663278 thông báo với nhân viên để có thể nhận hàng sớm nhất !'
+        })
         // return res.json({msg: 'Successfully', body:order});
         // return res.render('cart',{
         //     title: 'Cart',

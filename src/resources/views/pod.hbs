@@ -1,0 +1,170 @@
+<div class="wrapper pod-index">
+    <section>
+        <div class="row">
+            <div class="col-3 left-list">
+                <h2>Phân loại</h2>
+                <ul class="list-group">
+                    {{#each podType}}
+                        <a href="/pod/finding?type={{this._id}}"><li class="list-group-item">{{this.name}}</li></a>
+                    {{/each}}
+                </ul>
+
+
+
+                <h2 class="mt-5">Hãng</h2>
+                <ul class="list-group">
+                    {{#each brandList}}
+                        <a href="/pod/finding?brand={{this._id}}"><li class="list-group-item">{{this.name}}</li></a>
+                    {{/each}}
+                </ul>
+
+
+
+                <div class="row mt-5">
+                    <div class="col-3">
+                        <h2 class="">Filter:</h2>
+                    </div>
+                    <div class="col-9">
+                        <div class="filter-color">
+                            <h2 class="filter-pod-btn"><i class="fa fa-minus">  màu sắc</i></h2>
+                            <ul class="filter-group">
+                                <a href="/pod/finding?color=White"><li class="list-group-item">Trắng</li></a>
+                                <a href="/pod/finding?color=Black"><li class="list-group-item">Đen</li></a>
+                                <a href="/pod/finding?color=Red"><li class="list-group-item">Đỏ</li></a>
+                                <a href="/pod/finding?color=Yellow"><li class="list-group-item">Vàng</li></a>
+                                <a href="/pod/finding?color=Orange"><li class="list-group-item">Cam</li></a>
+                                <a href="/pod/finding?color=Grey"><li class="list-group-item">Xám</li></a>
+                                <a href="/pod/finding?color=Purple"><li class="list-group-item">Tím</li></a>
+                                <a href="/pod/finding?color=Green"><li class="list-group-item">Xanh lá</li></a>
+                                <a href="/pod/finding?color=Blue"><li class="list-group-item">Xanh biển</li></a>
+                        </div>
+                        <div class="filter-size">
+                            <h2 class="mt-4 filter-pod-btn"><i class="fa fa-minus">  Số hơi</i></h2>
+                            <ul class="filter-group">
+                                <a href="/pod/finding?buff=1000"><li class="list-group-item">1000 hơi</li></a>
+                                <a href="/pod/finding?buff=1200"><li class="list-group-item">1200 hơi</li></a>
+                                <a href="/pod/finding?buff=1300"><li class="list-group-item">1300 hơi</li></a>
+                                <a href="/pod/finding?buff=1400"><li class="list-group-item">1400 hơi</li></a>
+                                <a href="/pod/finding?buff=1500"><li class="list-group-item">1500 hơi</li></a>
+                                <a href="/pod/finding?buff=1600"><li class="list-group-item">1600 hơi</li></a>
+                                <a href="/pod/finding?buff=1700"><li class="list-group-item">1700 hơi</li></a>
+                                <a href="/pod/finding?buff=1800"><li class="list-group-item">1800 hơi</li></a>
+                                <a href="/pod/finding?buff=1900"><li class="list-group-item">1900 hơi</li></a>
+                                <a href="/pod/finding?buff=2000"><li class="list-group-item">2000 hơi</li></a>
+                                <a href="/pod/finding?buff=3000"><li class="list-group-item">3000 hơi</li></a>
+                                <a href="/pod/finding?buff=4000"><li class="list-group-item">4000 hơi</li></a>
+                                <a href="/pod/finding?buff=5000"><li class="list-group-item">5000 hơi</li></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-5">
+                    <div class="col-3 pt-2">
+                        <h2>Sắp xếp: </h2>
+                    </div>
+
+                    <div class="col-9">
+                        <ul class="list-group">
+                            <a href="/pod/newarrival"><li class="list-group-item">Mới về</li></a>
+                            <a href="/pod/cheappod"><li class="list-group-item">Rẻ nhất</li></a>
+                            <a href="/pod/expensivepod"><li class="list-group-item">Đắt nhất</li></a>
+                            <a href="/pod/bestseller"><li class="list-group-item">Best seller</li></a>
+                            <a href="/pod/available"><li class="list-group-item">Còn hàng</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Responsive of left list filter for table, mobile --}}
+            <div class="col-12 responsive-left-list">
+                <ul>
+                    <li select-item="responsive-sort-items"><i class="fa fa-plus"></i>  sắp xếp</li>
+                
+                    <li select-item="responsive-filter-items"><i class="fa fa-plus"></i>  Filter</li>
+                </ul>
+
+                <div class="responsive-items" id="responsive-filter-items">
+                    <div class="filter-color">
+                        <h2 class="filter-pod-btn"><i class="fa fa-minus">  màu sắc</i></h2>
+                        <ul class="filter-group">
+                                <a href="/pod/finding?color=White"><li class="list-group-item">Trắng</li></a>
+                                <a href="/pod/finding?color=Black"><li class="list-group-item">Đen</li></a>
+                                <a href="/pod/finding?color=Red"><li class="list-group-item">Đỏ</li></a>
+                                <a href="/pod/finding?color=Yellow"><li class="list-group-item">Vàng</li></a>
+                                <a href="/pod/finding?color=Orange"><li class="list-group-item">Cam</li></a>
+                                <a href="/pod/finding?color=Grey"><li class="list-group-item">Xám</li></a>
+                                <a href="/pod/finding?color=Purple"><li class="list-group-item">Tím</li></a>
+                                <a href="/pod/finding?color=Green"><li class="list-group-item">Xanh lá</li></a>
+                                <a href="/pod/finding?color=Blue"><li class="list-group-item">Xanh biển</li></a>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="filter-size">
+                        <h2 class="mt-4 filter-pod-btn"><i class="fa fa-minus">  Số hơi</i></h2>
+                        <ul class="filter-group">
+                            <a href="/pod/finding?buff=1000"><li class="list-group-item">1000 hơi</li></a>
+                            <a href="/pod/finding?buff=1200"><li class="list-group-item">1200 hơi</li></a>
+                            <a href="/pod/finding?buff=1300"><li class="list-group-item">1300 hơi</li></a>
+                            <a href="/pod/finding?buff=1400"><li class="list-group-item">1400 hơi</li></a>
+                            <a href="/pod/finding?buff=1500"><li class="list-group-item">1500 hơi</li></a>
+                            <a href="/pod/finding?buff=1600"><li class="list-group-item">1600 hơi</li></a>
+                            <a href="/pod/finding?buff=1700"><li class="list-group-item">1700 hơi</li></a>
+                            <a href="/pod/finding?buff=1800"><li class="list-group-item">1800 hơi</li></a>
+                            <a href="/pod/finding?buff=1900"><li class="list-group-item">1900 hơi</li></a>
+                            <a href="/pod/finding?buff=2000"><li class="list-group-item">2000 hơi</li></a>
+                            <a href="/pod/finding?buff=3000"><li class="list-group-item">3000 hơi</li></a>
+                            <a href="/pod/finding?buff=4000"><li class="list-group-item">4000 hơi</li></a>
+                            <a href="/pod/finding?buff=5000"><li class="list-group-item">5000 hơi</li></a>
+                        </ul>
+                    </div>
+                    <button class="form-control btn btn-outline-dark mb-4">Chấp nhận</button>
+                </div>
+
+                <div class="responsive-items" id="responsive-sort-items">
+                    <ul class="list-group">
+                            <a href="/pod/newarrival"><li class="list-group-item">Mới về</li></a>
+                            <a href="/pod/cheappod"><li class="list-group-item">Rẻ nhất</li></a>
+                            <a href="/pod/expensivepod"><li class="list-group-item">Đắt nhất</li></a>
+                            <a href="/pod/bestseller"><li class="list-group-item">Best seller</li></a>
+                            <a href="/pod/available"><li class="list-group-item">Còn hàng</li></a>
+                    </ul>
+                    <button class="form-control btn btn-outline-dark mb-4">Chấp nhận</button>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 row pod-list">
+                {{#if pod}}
+                    {{#each pod}}
+                        <div class="col-6">
+                            <div class="img-container">
+                                <a href="/pod/{{this._id}}?podDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
+                                    <img src="../uploads/{{this.image}}" alt="{{this.name}}">
+                                    <div class="overlay overlay-pod-list"><i class="fa fa-plus"></i> Chi tiết</div>
+                                </a>
+                            </div>
+                            <div class="pod-list-detail row">
+                                <a href="/pod/{{this._id}}?podDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
+                                    <h1>{{this.name}}</h1>
+                                </a>
+                                <h2>{{formatCurrency this.price}} VND</h2>
+
+                                {{#ifeq this.available false}}
+                                    <h3>Hết hàng</h3>
+                                {{else}}
+                                    {{#ifeq this.bestseller true}}
+                                        <h3>Best seller</h3>
+                                    {{/ifeq}}
+                                {{/ifeq}}
+                            </div>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <h1>Không có sản phẩm nào có sẵn.</h1>
+                {{/if}}
+            </div>
+        </div>
+    </section>
+</div>

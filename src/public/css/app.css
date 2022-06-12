@@ -361,12 +361,12 @@ section.cards .card img {
   object-fit: cover;
   border-radius: var(--border-radius) var(--border-radius) 0px 0px; }
 
-.shoe-sections {
+.pod-sections {
   padding: 20px 0 10px 0;
   text-align: center;
   font-family: 'FuturaLight'; }
 
-.shoe-sections button {
+.pod-sections button {
   font-size: 45px;
   background-color: #333;
   color: white;
@@ -374,16 +374,16 @@ section.cards .card img {
   transition-duration: 0.2s;
   opacity: 0.5; }
 
-.shoe-sections button:hover {
+.pod-sections button:hover {
   text-decoration: underline;
   opacity: 1; }
 
-.shoe-sections .active {
+.pod-sections .active {
   text-decoration: underline;
   opacity: 1; }
 
 @media screen and (max-width: 768px) {
-  .shoe-sections button {
+  .pod-sections button {
     font-size: 30px; } }
 
 .img-container {
@@ -1174,23 +1174,23 @@ tr:nth-child(even) {
 tbody tr:hover {
   color: #d00109; }
 
-#shoe-sections-index,
-#shoe-available {
+#pod-sections-index,
+#pod-available {
   border: 0;
   padding: 0; }
 
-.detail-shoe-container,
+.detail-pod-container,
 .cart-container {
   margin-top: 10px;
   font-family: 'Sofia';
   background: white; }
 
-.detail-shoe-container #shoe-detail,
+.detail-pod-container #pod-detail,
 .cart-container section {
   padding-left: 0;
   padding-bottom: 0px; }
 
-.detail-shoe-container #shoe-detail img {
+.detail-pod-container #pod-detail img {
   height: 80vh;
   width: 70vw;
   object-fit: cover; }
@@ -1202,39 +1202,39 @@ tbody tr:hover {
 .cart-container section {
   padding: 80px 0 0 0; }
 
-.detail-shoe-container section,
+.detail-pod-container section,
 .cart-container section {
   text-align: left;
   height: fit-content;
   background-color: white; }
 
-.detail-shoe-container #shoe-detail span {
+.detail-pod-container #pod-detail span {
   color: #9b9898;
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 100; }
 
-.detail-shoe-container #shoe-detail h1 {
+.detail-pod-container #pod-detail h1 {
   font-size: 21px;
   text-transform: uppercase;
   letter-spacing: 1.5px; }
 
-.detail-shoe-container #shoe-detail h2 {
+.detail-pod-container #pod-detail h2 {
   font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 1.5px; }
 
-.detail-shoe-container #shoe-detail ul {
+.detail-pod-container #pod-detail ul {
   list-style: none; }
 
-.detail-shoe-container #shoe-detail li > div {
+.detail-pod-container #pod-detail li > div {
   display: none;
   color: #8b898a; }
 
-.detail-shoe-container #shoe-detail .text-muted {
+.detail-pod-container #pod-detail .text-muted {
   text-decoration: underline; }
 
-.detail-shoe-container #shoe-detail ul li ul li::before {
+.detail-pod-container #pod-detail ul li ul li::before {
   content: "\2022";
   color: #797878;
   font-weight: bold;
@@ -1243,17 +1243,17 @@ tbody tr:hover {
   margin-left: -1em;
   vertical-align: left; }
 
-.detail-shoe-container #shoe-detail h3,
-.detail-shoe-container #shoe-detail a,
-.detail-shoe-container #shoe-detail ul li {
+.detail-pod-container #pod-detail h3,
+.detail-pod-container #pod-detail a,
+.detail-pod-container #pod-detail ul li {
   font-size: 14px;
   font-weight: 100;
   line-height: 23px; }
 
-.detail-shoe-container #shoe-detail #size-options a {
+.detail-pod-container #pod-detail #size-options a {
   font-size: 15px; }
 
-.detail-shoe-container #shoe-detail #size-guide-btn {
+.detail-pod-container #pod-detail #size-guide-btn {
   margin-top: 15px;
   margin-left: 13px;
   padding-left: 24px;
@@ -1261,16 +1261,16 @@ tbody tr:hover {
   background-size: 18px;
   color: #9b9899; }
 
-.detail-shoe-container #shoe-detail button {
+.detail-pod-container #pod-detail button {
   margin-left: 13px;
   text-transform: uppercase; }
 
-.detail-shoe-container #shoe-detail .fa-plus,
-.detail-shoe-container #shoe-detail .fa-minus {
+.detail-pod-container #pod-detail .fa-plus,
+.detail-pod-container #pod-detail .fa-minus {
   color: #797878;
   cursor: pointer; }
 
-.detail-shoe-container .fa-color-circle {
+.detail-pod-container .fa-color-circle {
   display: inline-block;
   border: 1px solid black;
   width: 30px;
@@ -1280,8 +1280,8 @@ tbody tr:hover {
   text-align: center;
   margin-left: 10px; }
 
-.detail-shoe-container .modal .modal-header,
-.detail-shoe-container .modal .modal-content {
+.detail-pod-container .modal .modal-header,
+.detail-pod-container .modal .modal-content {
   border-radius: var(--border-radius);
   border: var(--clr4); }
 
@@ -1299,7 +1299,7 @@ tbody tr:hover {
   color: black;
   font-size: 30px; }
 
-#shoe-women-size {
+#pod-women-size {
   display: none; }
 
 .modal.right .modal-dialog {
@@ -1351,22 +1351,22 @@ tbody tr:hover {
   width: 100%;
   object-fit: scale-down; }
 
-#another-shoe-detail {
+#another-pod-detail {
   height: fit-content;
   padding: 0px 50px; }
 
-#another-shoe-detail .card {
+#another-pod-detail .card {
   border: 0;
   font-size: 16px;
   letter-spacing: 1.5px; }
 
-#another-shoe-detail h1 {
+#another-pod-detail h1 {
   text-align: center;
   text-transform: uppercase;
   font-size: 30px;
   color: #121212; }
 
-#another-shoe-detail .img-container img {
+#another-pod-detail .img-container img {
   max-height: 40vh;
   min-height: 40vh;
   height: fit-content;
@@ -1376,59 +1376,59 @@ tbody tr:hover {
   transition: width 0.2s linear; }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .detail-shoe-container #shoe-detail img {
+  .detail-pod-container #pod-detail img {
     height: 50vh;
     width: 55vw;
     object-fit: cover; } }
 
 @media screen and (max-width: 540px) {
-  .detail-shoe-container #shoe-detail img {
+  .detail-pod-container #pod-detail img {
     height: fit-content;
     width: 100vw;
     object-fit: cover; }
-  .detail-shoe-container #another-shoe-detail img {
+  .detail-pod-container #another-pod-detail img {
     max-height: 15vh;
     height: fit-content;
     object-fit: scale-down; }
-  .detail-shoe-container #another-shoe-detail h1 {
+  .detail-pod-container #another-pod-detail h1 {
     font-size: 28px; } }
 
-.wrapper.shoe-index {
+.wrapper.pod-index {
   margin-top: 10px;
   font-family: 'Sofia';
   background: white; }
 
-.wrapper.shoe-index section {
+.wrapper.pod-index section {
   background: white;
   text-align: left;
   padding-top: 120px; }
 
-.shoe-index .left-list {
+.pod-index .left-list {
   text-transform: uppercase; }
 
-.shoe-index .left-list ul li {
+.pod-index .left-list ul li {
   border: 0;
   font-size: 0.8rem;
   line-height: 1.5rem;
   letter-spacing: 0.06rem; }
 
-.shoe-index .left-list ul li:hover {
+.pod-index .left-list ul li:hover {
   text-decoration: underline;
   cursor: pointer;
   color: #d00109; }
 
-.shoe-index .left-list h2 {
+.pod-index .left-list h2 {
   font-size: 1rem;
   color: #838080;
   cursor: default; }
 
-.shoe-index .shoe-list img {
+.pod-index .pod-list img {
   height: 60vh;
   width: 100%;
   object-fit: scale-down;
   padding-bottom: 30px; }
 
-.shoe-index .shoe-list .overlay-shoe-list {
+.pod-index .pod-list .overlay-pod-list {
   text-align: left;
   background-color: inherit;
   color: black;
@@ -1437,22 +1437,22 @@ tbody tr:hover {
   text-transform: uppercase;
   letter-spacing: 1.5px; }
 
-.shoe-index .shoe-list .overlay-shoe-list .fa {
+.pod-index .pod-list .overlay-pod-list .fa {
   -webkit-text-stroke: 0.8px white; }
 
-.shoe-list-detail h1 {
+.pod-list-detail h1 {
   font-size: 1em; }
 
-.shoe-list-detail h2 {
+.pod-list-detail h2 {
   font-size: 0.8em;
   font-weight: 100;
   color: #202020; }
 
-.shoe-list-detail h3 {
+.pod-list-detail h3 {
   font-size: 0.7em;
   color: #5a5959; }
 
-.shoe-list-detail h1:hover {
+.pod-list-detail h1:hover {
   color: #d00109;
   text-decoration: underline;
   cursor: pointer; }
@@ -1501,22 +1501,22 @@ tbody tr:hover {
     display: block; }
   .left-list {
     display: none; }
-  .shoe-index section {
+  .pod-index section {
     padding-right: 0;
     padding-left: 25px; }
-  .shoe-index .shoe-list img {
+  .pod-index .pod-list img {
     height: 34vh;
     width: 100%; }
-  .shoe-list-detail {
+  .pod-list-detail {
     padding-left: 1rem; } }
 
 @media screen and (max-width: 450px) {
-  .shoe-index .shoe-list img {
+  .pod-index .pod-list img {
     height: 30vh;
     width: 100%; }
-  .shoe-list-detail {
+  .pod-list-detail {
     padding-left: 1rem; }
-  .shoe-list {
+  .pod-list {
     text-align: center; } }
 
 .img-checkout {

@@ -6,25 +6,25 @@
       <div class="carousel-item active">
         <img class="img-slide-index" src="/images/slide1.png" class="d-block w-100" alt="slide1">
         <div class="slide-text">
-          <h3>jordan x phongstore</h3>
-          <h1>sneakers</h1>
-          <a href="/shoe"><button class="btn btn-outline-light">shop now!</button></a>
+          <h3>rodeo x bardpod</h3>
+          <h1>bard store</h1>
+          <a href="/pod"><button class="btn btn-outline-light">shop now!</button></a>
         </div>
       </div>
       <div class="carousel-item">
         <img class="img-slide-index" src="/images/slide2.png" class="d-block w-100" alt="slide2">
         <div class="slide-text">
           {{!-- <h3>Small badge</h3> --}}
-          <h1>phong store x gucci</h1>
-          <a href="/shoe"><button class="btn btn-outline-light">shop now!</button></a>
+          <h1>bard pod x balmy</h1>
+          <a href="/pod"><button class="btn btn-outline-light">shop now!</button></a>
         </div>
       </div>
       <div class="carousel-item">
         <img class="img-slide-index" src="/images/slide3.png" class="d-block w-100" alt="slide3">
         <div class="slide-text">
-          <h3>gucci love parada</h3>
-          <h1>gucci blondie</h1>
-          <a href="/shoe"><button class="btn btn-outline-light">shop now!</button></a>
+          <h3>relx parada</h3>
+          <h1>bardpod</h1>
+          <a href="/pod"><button class="btn btn-outline-light">shop now!</button></a>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
       <div class="button"></div>
     </section>  --}}
     <div class="hero-text">
-      <h1>Good<br><span>shoes</span><br> take you<br>good places</h1>
+      <h1>Good<br><span>pod</span><br> take you<br>good places</h1>
       <a href="#">
         <button class="btn btn-outline-dark">Shop now!</button>
       </a>
@@ -55,48 +55,48 @@
   </div>
 
   <div class="wrap">
-      <div class="shoe-sections">
-        <button class="active" data-switch="#shoe-best-seller">best sellers</button>
-        <button data-switch="#shoe-available">new arrivals</button>
+      <div class="pod-sections">
+        <button class="active" data-switch="#pod-best-seller">best sellers</button>
+        <button data-switch="#pod-available">new arrivals</button>
       </div>
 
-    <div id="shoe-sections-index">  
-      <div id="shoe-best-seller">
+    <div id="pod-sections-index">  
+      <div id="pod-best-seller">
         <section class="cards">
-          {{#each shoeBestseller}}
+          {{#each podBestseller}}
             <div class="card">
               <div class="img-container">
-                <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
+                <a href="/pod/{{this._id}}?podDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
                   <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
-                  <div class="overlay">See detail</div>
+                  <div class="overlay">Chi tiết</div>
                 </a>
               </div>
               <div class="content">
                 <span class="badge-text">{{this.brand.name}}</span>
                 <div class="badge-headline">{{this.name}}</div>
                 <span class="badge-text">{{this.type.name}}</span>
-                <div class="badge-price mb-4 money-dot-anywhere" id="money-dot">{{this.price}}</div>
+                <div class="badge-price mb-4">{{formatCurrency this.price}} VND</div>
               </div>
             </div>
           {{/each}}
         </section>
       </div> 
 
-      <div id="shoe-available" style="display:none">
+      <div id="pod-available" style="display:none">
         <section class="cards">
-          {{#each shoeAvailable}}
+          {{#each podAvailable}}
             <div class="card">
               <div class="img-container">
-                <a href="/shoe/{{this._id}}?shoeDetailTitle=New%20Arrival&brandid={{this.brand._id}}">
+                <a href="/pod/{{this._id}}?podDetailTitle=New%20Arrival&brandid={{this.brand._id}}">
                   <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
-                  <div class="overlay">See detail</div>
+                  <div class="overlay">Chi tiết</div>
                 </a>
               </div>
               <div class="content">
                 <span class="badge-text">{{this.brand.name}}</span>
                 <div class="badge-headline">{{this.name}}</div>
                 <span class="badge-text">{{this.type.name}}</span>
-                <div class="badge-price mb-4 money-dot-anywhere" id="money-dot">{{this.price}}</div>
+                <div class="badge-price mb-4">{{formatCurrency this.price}} VND</div>
               </div>
             </div>
           {{/each}}
@@ -115,5 +115,10 @@
   </div>
 </div>
 
+<script>
+  {{#if msg}}
+    alert("{{msg}}")
+  {{/if}}
+</script>
 
 

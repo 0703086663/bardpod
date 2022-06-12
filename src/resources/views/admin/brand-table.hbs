@@ -1,30 +1,30 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">{{title}} Tables</h1>
+            <h1 class="mt-4">Quản lý hãng</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tables</li>
+                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Bảng</li>
             </ol>
             <div class="card mb-2">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Brand Database
+                    Quản lý hãng
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#create-brand"><i class="fa fa-plus"></i> Create new brand</button>
+                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#create-brand"><i class="fa fa-plus"></i> Tạo hãng mới</button>
                     <a href="#deleted-brand-table">
-                        <button class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Deleted Brands</button>
+                        <button class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Hãng đã xóa</button>
                     </a>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Created date</th>
-                                    <th>Action</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên</th>
+                                    <th>Mô tả</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,17 +36,17 @@
                                     <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "DD/MM/yyyy"}}</td>
                                     <td>
                                         <a href="" class="open-modal-edit-brand" data-toggle="modal" data-target="#edit-brand" data-id="{{this._id}}">
-                                            <button class="btn btn-dark">Edit</button>
+                                            <button class="btn btn-dark">Sửa</button>
                                         </a>
                                         <a href="" data-toggle="modal" data-target="#delete-brand" data-id="{{this._id}}">
-                                            <button class="btn btn-danger">Delete</button>
+                                            <button class="btn btn-danger">Xóa</button>
                                         </a>
                                     </td>
                                 </tr>
                                 {{else}}
                                 <tr>
                                     <td colspan="5" class="text-center">
-                                        There are no brands have been created.
+                                        Chưa có hãng nào được tạo.
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -62,27 +62,27 @@
         <div class="container-fluid px-4" id="deleted-brand-table">
             <h1 class="mt-4">{{title}} Tables</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tables</li>
+                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Bảng</li>
             </ol>
             <div class="card mb-2">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Brand Database
+                    Quản lý hãng
                 </div>
                 <div class="card-body">
                     <a href="/admin/brand-table">
-                        <button class="btn btn-info mb-2"><i class="fa fa-cloud"></i> Available Brands</button>
+                        <button class="btn btn-info mb-2"><i class="fa fa-cloud"></i> Hãng đã tạo</button>
                     </a>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Created date</th>
-                                    <th>Action</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên </th>
+                                    <th>Mô tả</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,10 +94,10 @@
                                     <td>{{moment this.createdAt format = "DD/MM/yyyy"}}</td>
                                     <td>
                                         <a href="" data-toggle="modal" data-target="#restore-brand" data-id="{{this._id}}">
-                                            <button class="btn btn-info">Restore</button>
+                                            <button class="btn btn-info">Khôi phục</button>
                                         </a>
                                         <a href="" data-toggle="modal" data-target="#force-delete-brand" data-id="{{this._id}}">
-                                            <button class="btn btn-danger">Permantly Delete</button>
+                                            <button class="btn btn-danger">Xóa vĩnh viễn</button>
                                         </a>
                                     </td>
                                 </tr>
@@ -105,8 +105,8 @@
                                 {{else}}
                                 <tr>
                                     <td colspan="5" class="text-center">
-                                        No brands have been deleted.
-                                        <a href="#layoutSidenav_content">Available Brands</a>
+                                        Chưa có hãng nào được tạo.
+                                        <a href="#layoutSidenav_content">Hãng đã tạo</a>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -129,17 +129,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-header-confirm-delete">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="delete-categoryLabel"><b>Delete brand</b></h5>
+                    <h5 class="modal-title" id="delete-categoryLabel"><b>Xóa hãng</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body">Are you sure to delete this brand?</div>
+                <div class="modal-body">Bạn có chắc chắn là muốn xóa hãng này?</div>
                 
                 <div class="modal-footer">
-                    <button id="btn-delete-brand" type="button" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button id="btn-delete-brand" type="button" class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createBrandLabel">Create new brand</h5>
+                    <h5 class="modal-title" id="createBrandLabel">Tạo hãng mới</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="payment-close">&times;</span>
                     </button>
@@ -158,11 +158,11 @@
                 <form action="/brand/store" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="brand-name" class="col-form-label">Brand name:</label>
+                            <label for="brand-name" class="col-form-label">Tên hãng:</label>
                             <input type="text" class="form-control" id="brand-name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="brand-description" class="col-form-label">Description:</label>
+                            <label for="brand-description" class="col-form-label">Mô tả:</label>
                             <textarea type="text" class="form-control" id="brand-description" name="desc" required></textarea>
                         </div>
                         <div class="form-group">
@@ -171,13 +171,13 @@
                             <input type="file" class="form-control p-1" id="" name="image"
                                     accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
                             <div class="text-center">
-                                <img id="preview-image" alt="x" width="50%" height="50%" src="../images/example-shoe.png"/ required>
+                                <img id="preview-image" alt="x" width="50%" height="50%" src="../images/example-pod.png"/ required>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info">Create</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-info">Tạo</button>
                     </div>
                 </form>
             </div>
@@ -189,7 +189,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editBrandLabel">Edit brand</h5>
+                    <h5 class="modal-title" id="editBrandLabel">Sửa nội dung hãng</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="payment-close">&times;</span>
                     </button>
@@ -197,11 +197,11 @@
                 <form id="edit-brand-form" method="POST">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="edit-brand-name" class="col-form-label">Brand name</label>
+                            <label for="edit-brand-name" class="col-form-label">Tên hãng</label>
                             <input type="text" class="form-control" id="edit-brand-name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="edit-brand-desc" class="col-form-label">Description</label>
+                            <label for="edit-brand-desc" class="col-form-label">Mô tả</label>
                             <textarea type="text" class="form-control" id="edit-brand-desc" name="desc" rows="5"></textarea>
                         </div>
                         {{!-- <div class="form-group">
@@ -213,8 +213,8 @@
                                 accept="image/*"> --}}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-info" id="btn-edit-brand">Save changes</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-info" id="btn-edit-brand">Lưu thay đổi</button>
                     </div>
                 </form>
             </div>
@@ -226,17 +226,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-header-confirm-delete">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="delete-categoryLabel"><b>Permantly Delete brand</b></h5>
+                    <h5 class="modal-title" id="delete-categoryLabel"><b>Xóa vĩnh viễn hãng</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body">Are you sure to <strong>Permantly</strong> delete this brand?</div>
+                <div class="modal-body">Bạn có chắc chắn là muốn <strong>xóa vĩnh viễn</strong> hãng này không?</div>
                 
                 <div class="modal-footer">
-                    <button id="btn-force-delete-brand" type="button" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button id="btn-force-delete-brand" type="button" class="btn btn-danger">Chắc chắn</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                 </div>
             </div>
         </div>
@@ -247,17 +247,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-header-confirm-restore">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="restore-categoryLabel"><b>Restore brand</b></h5>
+                    <h5 class="modal-title" id="restore-categoryLabel"><b>Khôi phục hãng</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body">Are you sure to <strong>Restore</strong>  this brand?</div>
+                <div class="modal-body">Bạn có chắc chắn là muốn <strong>khôi phục</strong> hãng này?</div>
                 
                 <div class="modal-footer">
-                    <button id="btn-restore-brand" type="button" class="btn btn-danger">Restore</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button id="btn-restore-brand" type="button" class="btn btn-danger">Khôi phục</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
                 </div>
             </div>
         </div>
