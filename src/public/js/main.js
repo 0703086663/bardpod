@@ -502,7 +502,7 @@ function logout() {
       }
 
       $('#edit-pod-price').attr('value', podPrice);
-      document.getElementById('total').innerHTML = podQuantity;
+      // document.getElementById('total').innerHTML = podQuantity;
       
       var editAvailableOptions = document.getElementsByClassName('edit-buff-options');
       for(var i=0; i<editAvailableOptions.length; i++){

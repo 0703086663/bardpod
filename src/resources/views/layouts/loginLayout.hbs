@@ -23,7 +23,7 @@
     <link type="text/css" rel="stylesheet" href="/css/app.css">
 
     <link rel="shortcut icon" href="/images/logo-icon.png">
-    <title>PhongStore - {{title}}</title>
+    <title>BardPod - {{title}}</title>
 </head>
 <body>
     <header class="main-header" id="main-header">
@@ -41,12 +41,16 @@
             </div>
         </div>
         
-        <nav class="navbar-dropdown-items" id="navbar-dropdown-items">
+          <nav class="navbar-dropdown-items" id="navbar-dropdown-items">
             <ul>
-            {{!-- more than 6 is not beautiful --}}
-            <li><a href="/pod">Pods</a></li>
-            <li><a href="">Cart</a></li>
-            <a href="javascript:;" class="btn-info-scroll"><li>About Store</li></a>
+            {{!-- more than 4 is not beautiful --}}
+            {{!-- <a href="/product"><li>Products</li></a>
+            <a href="/product/manage"><li>Manage</li></a>
+            <a href="/admin"><li>Admin</li></a> --}}
+            <a href="/pod"><li>Sản phẩm</li></a>
+            <a href="/cart"><li>Giỏ hàng</li>
+            </a>
+            <a href="javascript:;" class="btn-info-scroll"><li>Về Bard</li></a>
             </ul>
         </nav>
     </header>

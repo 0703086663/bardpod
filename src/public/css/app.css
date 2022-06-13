@@ -113,7 +113,7 @@ body.vi :lang(en) {
   min-width: 150px; }
 
 .wrap-image {
-  background-image: url("/images/banner-index.png");
+  background-image: url("/images/banner-index-pod.webp");
   height: 95vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -131,14 +131,14 @@ body.vi :lang(en) {
   top: 40%;
   left: 30%;
   transform: translate(-50%, -50%);
-  color: black;
+  color: white;
   font-style: italic; }
 
 .hero-text span {
   font-family: "GroovedPersonalUseRegular";
   font-size: 70px;
-  color: white;
-  background-color: black; }
+  color: black;
+  background-color: white; }
 
 .hero-text button:hover {
   background-color: black; }
@@ -458,9 +458,9 @@ footer nav ul li {
     right: -20px;
     top: 170%; }
   .wrap-image {
-    background-image: url("/images/banner-index-sm.png");
+    background-image: url("/images/banner-index-pod.webp");
     height: 95vh;
-    background-position: center;
+    background-position: 65% 30%;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -475,13 +475,9 @@ footer nav ul li {
     top: 50%;
     left: 35%;
     transform: translate(-50%, -50%);
-    color: black;
     font-style: italic; }
   .hero-text span {
-    font-family: "GroovedPersonalUseRegular";
-    font-size: 70px;
-    color: white;
-    background-color: black; }
+    font-size: 70px; }
   .hero-text button:hover {
     background-color: black; } }
 
@@ -1344,7 +1340,7 @@ tbody tr:hover {
   color: #838080; }
 
 #pre-order-modal button {
-  width: 47%; }
+  width: 97%; }
 
 #pre-order-modal img {
   height: fit-content;

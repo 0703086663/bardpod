@@ -4,7 +4,7 @@
             <div class="register-form p-2">
                 <form action="/store" method="POST">
                     <div class="form-group mt-2">
-                        <label for="phone">Phone number</label>
+                        <label for="phone">Số điện thoại</label>
                         <input type="text" class="form-control" id="phone" name="phone" required>
                     </div>
                     <div class="form-group mt-2">
@@ -12,21 +12,21 @@
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="password">Password</label>
+                        <label for="password">Mật khẩu</label>
                         <input type="password" class="form-control" id="password" name="password" autocomplete="true">
                     </div>
                     <div class="form-group mt-2">
-                        <label for="name">Full name</label>
+                        <label for="name">Tên đầy đủ</label>
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group mt-2">
-                        <label for="birthday">Birthday</label>
+                        <label for="birthday">Ngày sinh</label>
                         <input type="date" class="form-control" id="birthday" name="birthday"
                                 value="2000-01-01"
                                 min="1960-01-01" max="2020-12-31">
                     </div>
                     <div class="form-group mt-2">
-                        <label for="address">Address</label>
+                        <label for="address">Địa chỉ</label>
                         <input type="text" class="form-control" id="address" name="address">
                     </div>
 
@@ -39,12 +39,12 @@
                     {{#ifeq success true}}
                     <div class="alert alert-success mt-4" role="alert">
                         {{msgReg}}
-                        <button class="btn btn-success">Click here to login</button>
+                        <a href="/login" class="btn btn-success" role="button">Ấn vào đây để đăng nhập</a>
                     </div>
                     {{/ifeq}}
 
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-black">Register</button>
+                        <button type="submit" class="btn btn-black">Đăng kí</button>
                     </div>
                 </form>
             </div>
@@ -55,8 +55,8 @@
         <div id="move-to-login-section">
             <div class="register-sidenav">
                 <div class="register-main-text">
-                <h2> Register Page</h2>
-                <p class="text-muted">Click here to <span>LOGIN</span> if you already have an account</p>
+                <h2> Đăng kí</h2>
+                <p class="text-muted">Ấn vào đây để <span>ĐĂNG NHẬP</span> nếu bạn đã có tài khoản.</p>
                 </div>
             </div>
         </div>

@@ -390,6 +390,9 @@ class SiteController {
 
     //[POST] /checkout
     checkout (req,res,next){
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, 'secretpasstoken')
+    
         var order = new Order({
             user: req.user,
             cart: req.session.cart,
@@ -400,15 +403,43 @@ class SiteController {
         order.save()
         req.session.cart = null;
 
-        res.render('index',{
-            title: 'Home',
-            msg: 'Đặt hàng thành công! Bạn có thể gọi vào các số hotline 0703086663 hoặc 0865663278 thông báo với nhân viên để có thể nhận hàng sớm nhất !'
+        Promise.all([
+            User.findOne({_id: decodeToken}),
+            Brand.find({}),
+            Podtype.find({}),
+            Pod.find({bestseller: true})
+                .populate('brand')
+                .populate('type')
+                .sort({createdAt: 1})
+                .limit(3),
+            Pod.find({available: true})
+            .populate('brand')
+            .populate('type')
+            .sort({createdAt: 1})
+            .limit(3)
+        ])
+        .then(([
+            data,
+            brandList,
+            podType,
+            podBestseller,
+            podAvailable
+        ]) => {
+            if (data) {
+                req.data = data
+                return res.render('index',
+                    {
+                        user: mongooseToObject(data),
+                        brandList: multipleMongooseToObject(brandList),
+                        podType: multipleMongooseToObject(podType),
+                        podBestseller: multipleMongooseToObject(podBestseller),
+                        podAvailable: multipleMongooseToObject(podAvailable),
+                        title: 'Home',
+                        msg: 'Đặt hàng thành công! Bạn có thể gọi vào các số hotline 0703086663 hoặc 0865663278 thông báo với nhân viên để có thể nhận hàng sớm nhất !'
+                    })
+                next()
+            }
         })
-        // return res.json({msg: 'Successfully', body:order});
-        // return res.render('cart',{
-        //     title: 'Cart',
-        //     msg: 'Successfully order product'
-        // })
     }
 }
 
